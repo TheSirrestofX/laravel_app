@@ -1,37 +1,38 @@
 @extends('notes.layout')
 
 @section('content')
-<div class="card mt-5">
-    <h2 class="card-header">Login</h2>
-    <div class="card-body">
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4" style="width: 400px;">
+        <h2 class="text-center mb-4">Login</h2>
+
         @if(session('success'))
-            <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+            <div class="alert alert-success text-center" role="alert">{{ session('success') }}</div>
         @endif
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
+                <label for="email" class="form-label fw-bold">Email</label>
+                <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control" placeholder="Enter your email">
                 @error('email')
-                    <span class="text-danger">{{ $message }}</span>
+                    <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                <label for="password" class="form-label fw-bold">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
                 @error('password')
-                    <span class="text-danger">{{ $message }}</span>
+                    <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
-            
-            <button type="submit" class="btn btn-primary">Login</button>
+
+            <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
 
-        <div class="mt-3">
-            <p>Don't have an account yet?</p>
-            <a href="{{ route('register') }}" class="btn btn-success btn-sm">Register</a>
+        <div class="text-center mt-3">
+            <p>Don't have an account?</p>
+            <a href="{{ route('register') }}" class="btn btn-outline-success btn-sm">Register</a>
         </div>
     </div>
 </div>
